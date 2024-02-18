@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DroneToolMate - Return</title>
+
+    <!-- Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <style>
+        /* Add your custom styles here */
+        body {
+            background-color: #f8f9fa;
+            margin-bottom: 100px; /* Added margin for the fixed button */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        /* Add more styles as needed */
+        .fixed-button {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .selected-card > .card{
+            border: 3px solid #c121267f; /* Highlight selected cards */
+            background-color: #c121261f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Top bar with logo, app name, and logout button -->
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="text-center">
+                <!-- Your logo and app name -->
+                <img src="logo.png" alt="DroneToolMate Logo" class="rounded-circle" width="50">
+                <h4 class="d-inline ml-2">DroneToolMate</h4>
+            </div>
+            <div>
+                <!-- Back button -->
+                <a href="main.html" class="btn btn-outline-primary mr-2">
+                    <i class="bi bi-arrow-left"></i> Back
+                </a>
+                <!-- Logout button -->
+                <a href="index.html" class="btn btn-outline-danger">Logout</a>
+            </div>
+        </div>
+
+        <!-- Search bar -->
+        <div class="mt-4 mb-4">
+            <input type="text" class="form-control" placeholder="Search tools">
+        </div>
+
+        <!-- Scrollable grid view of tools -->
+        <div id="toolGrid" class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+            <div class="col tool-card" data-tool-id="1">
+                <div class="card">
+                    <img src="tool-image.png" class="card-img-top" alt="Tool Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Tool Name</h5>
+                        <p class="card-text">Tool details here.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col tool-card" data-tool-id="2">
+                <div class="card">
+                    <img src="tool-image.png" class="card-img-top" alt="Tool Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Tool Name</h5>
+                        <p class="card-text">Tool details here.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col tool-card" data-tool-id="3">
+                <div class="card">
+                    <img src="tool-image.png" class="card-img-top" alt="Tool Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Tool Name</h5>
+                        <p class="card-text">Tool details here.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col tool-card" data-tool-id="4">
+                <div class="card">
+                    <img src="tool-image.png" class="card-img-top" alt="Tool Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Tool Name</h5>
+                        <p class="card-text">Tool details here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fixed "Order selected tools" button -->
+        <div class="fixed-button text-center">
+            <button id="orderButton" class="btn btn-primary btn-lg" disabled onclick="orderSelectedTools()">Return selected tools</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS scripts (Popper.js and Bootstrap JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- Your custom JavaScript -->
+    <script>
+        // Array to store selected tool IDs
+        var selectedToolIds = [];
+
+        // Function to toggle the selected state of a card
+        function toggleCardSelection(card) {
+            card.classList.toggle('selected-card');
+            updateOrderButtonState();
+        }
+
+        // Function to update the state of the "Order selected tools" button
+        function updateOrderButtonState() {
+            var orderButton = document.getElementById('orderButton');
+            var selectedCards = document.querySelectorAll('.selected-card');
+
+            // Enable the button if at least one card is selected
+            orderButton.disabled = selectedCards.length === 0;
+        }
+
+        // Function to handle the "Order selected tools" button click
+        function orderSelectedTools() {
+            // Get the selected tool IDs
+            var selectedCards = document.querySelectorAll('.selected-card');
+            selectedToolIds = Array.from(selectedCards).map(function (card) {
+                return card.dataset.toolId;
+            });
+
+            // Redirect to "complete.html"
+            window.location.href = "complete.html";
+        }
+
+        // Add click event listener for tool cards
+        var toolCards = document.querySelectorAll('.tool-card');
+        toolCards.forEach(function (card) {
+            card.addEventListener('click', function () {
+                toggleCardSelection(card);
+            });
+        });
+    </script>
+</body>
+
+</html>
