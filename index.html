@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DroneToolMate - Login</title>
+
+    <!-- Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <style>
+        /* Add your custom styles here */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 400px;
+            margin-top: 50px;
+        }
+
+        /* Add more styles as needed */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-center">
+            <!-- Your simple circle-shaped logo -->
+            <img src="logo.png" alt="DroneToolMate Logo" class="rounded-circle" width="100">
+            <h2 class="mt-3">DroneToolMate</h2>
+        </div>
+
+        <!-- Login form -->
+        <form id="loginForm">
+            <div id="errorMessage" class="alert alert-danger mt-3" style="display: none;"></div>
+            <div class="mb-3">
+                <label for="userID" class="form-label">UserID</label>
+                <input type="text" class="form-control" id="userID" placeholder="Enter your UserID">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your Password">
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+            <a href="signup.html" class="btn btn-secondary">Sign up</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS scripts (Popper.js and Bootstrap JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- Your custom JavaScript -->
+    <script>
+        function login() {
+        // Get user input values
+        var userIDInput = document.getElementById("userID").value;
+        var passwordInput = document.getElementById("password").value;
+
+        // Check if entered credentials are correct
+        if (userIDInput === "12345678" && passwordInput === "12345678") {
+            // Redirect to main.html
+            window.location.href = "main.html";
+        } else {
+            // Show error message
+            var errorMessageElement = document.getElementById("errorMessage");
+            errorMessageElement.innerHTML = "Incorrect UserID or Password";
+            errorMessageElement.style.display = "block";
+        }
+    }
+    </script>
+</body>
+
+</html>
